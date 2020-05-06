@@ -4,8 +4,16 @@ class Utang {
   int amount;
   String about;
   String utangdate;
+  String paid;
 
-  Utang({this.id, this.name, this.amount, this.about, this.utangdate});
+  Utang({
+    this.id,
+    this.name,
+    this.amount,
+    this.about,
+    this.utangdate,
+    this.paid,
+  });
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
@@ -13,7 +21,8 @@ class Utang {
       'name': name,
       'amount': amount,
       'about': about,
-      'utangdate': utangdate
+      'utangdate': utangdate,
+      'paid': paid,
     };
     return map;
   }
@@ -24,5 +33,6 @@ class Utang {
     amount = map['amount'];
     about = map['about'];
     utangdate = map['utangdate'];
+    paid = map['paid'];
   }
 }

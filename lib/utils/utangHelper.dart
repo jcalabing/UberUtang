@@ -13,6 +13,7 @@ class UtangHelper {
   static const String ABOUT = 'about';
   static const String UTANGDATE = 'utangdate';
   static const String TABLE = 'utangtable';
+  static const String PAID = 'paid';
   static const String DB_NAME = 'uberutang.db';
 
   Future<Database> get db async {
@@ -33,7 +34,7 @@ class UtangHelper {
   _onCreate(Database db, int version) async {
     await db.execute("""CREATE TABLE $TABLE 
         ($ID INTEGER PRIMARY KEY,
-         $NAME TEXT, $AMOUNT INTEGER, $ABOUT TEXT, $UTANGDATE TEXT)""");
+         $NAME TEXT, $AMOUNT INTEGER, $ABOUT TEXT, $UTANGDATE TEXT, $PAID TEXT )""");
   }
 
   Future<Utang> save(Utang utang) async {
@@ -45,7 +46,7 @@ class UtangHelper {
   Future<List<Utang>> getUtangs() async {
     var dbClient = await db;
     List<Map> maps = await dbClient
-        .query(TABLE, columns: [ID, NAME, AMOUNT, ABOUT, UTANGDATE]);
+        .query(TABLE, columns: [ID, NAME, AMOUNT, ABOUT, UTANGDATE, PAID]);
     List<Utang> utangs = [];
     if (maps.length > 0) {
       for (int i = 0; i < maps.length; i++) {

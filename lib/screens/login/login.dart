@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uberutang/screens/login/loginform.dart';
-import 'package:uberutang/widgets/MyBottomNavBar.dart';
 import 'package:uberutang/widgets/uberutanglogo.dart';
 import 'package:uberutang/widgets/uberutangbrand.dart';
 
@@ -57,7 +56,6 @@ class _LoginState extends State<Login> {
             ),
           ],
         ),
-        //bottomNavigationBar: MyBottomNavBar(),
       ),
     );
   }

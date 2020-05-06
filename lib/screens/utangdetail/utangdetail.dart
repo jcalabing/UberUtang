@@ -25,50 +25,90 @@ class _UtangDetailState extends State<UtangDetail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('NAME'),
-              TextFormField(),
-              RichText(
-                text: TextSpan(
-                  text: 'NAME: ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 30.0,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: utang.name,
-                      style: TextStyle(color: Colors.black),
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        'NAME:',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 6,
+                      child: Text(
+                        utang.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple,
+                          fontSize: 20.0,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  text: 'AMOUNT: ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 30.0,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: utang.amount.toString(),
-                      style: TextStyle(color: Colors.amber),
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        'AMOUNT:',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 6,
+                      child: Text(
+                        utang.amount.toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.amber,
+                          fontSize: 25.0,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  text: 'ABOUT: ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 30.0,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: utang.about,
-                      style: TextStyle(color: Colors.black),
-                    )
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        'ABOUT:',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 6,
+                      child: Text(
+                        utang.about,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
 import 'package:uberutang/utils/utang.dart';
 import 'package:uberutang/utils/utangHelper.dart';
-import 'package:uberutang/widgets/MyBottomNavBar.dart';
 
 class AddToList extends StatefulWidget {
   @override
@@ -30,11 +30,15 @@ class _AddToListState extends State<AddToList> {
         appBar: AppBar(
           title: Text('Add new'),
         ),
-        body: Padding(
-          padding: EdgeInsets.all(40.0),
-          child: addForm(),
+        body: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: EdgeInsets.all(40.0),
+              child: addForm(),
+            ),
+          ),
         ),
-        bottomNavigationBar: MyBottomNavBar(),
       ),
     );
   }
@@ -46,78 +50,83 @@ class _AddToListState extends State<AddToList> {
       name: name,
       amount: amount,
       about: about,
+      paid: 'FALSE',
     );
-    //print(amount);
     utangHelper.save(u);
+    print('save');
+    //Navigator.of(context).pop(true);
+    Navigator.pushReplacementNamed(context, '/');
   }
 
   addForm() {
-    return Form(
-      key: formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          TextFormField(
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(labelText: 'Name'),
-            validator: (val) => val.length == 0 ? 'Enter Name' : null,
-            onSaved: (val) => name = val,
-          ),
-          TextFormField(
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(labelText: 'Amount'),
-            onSaved: (val) => amount = int.tryParse(val),
-          ),
-          TextFormField(
-            keyboardType: TextInputType.multiline,
-            decoration: InputDecoration(labelText: 'About'),
-            onSaved: (val) => about = val,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18.0, 20.0, 18.0, 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                MaterialButton(
-                  padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                  color: Colors.amber,
-                  textColor: Colors.deepPurple,
-                  onPressed: addUtang,
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'SAVE',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                ),
-                MaterialButton(
-                  padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                  textColor: Colors.deepPurple,
-                  color: Colors.grey,
-                  onPressed: () {},
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'CANCEL',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+    return Center(
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextFormField(
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(labelText: 'Name'),
+              validator: (val) => val.length == 0 ? 'Enter Name' : null,
+              onSaved: (val) => name = val,
             ),
-          )
-        ],
+            TextFormField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: 'Amount'),
+              onSaved: (val) => amount = int.tryParse(val),
+            ),
+            TextFormField(
+              keyboardType: TextInputType.multiline,
+              decoration: InputDecoration(labelText: 'About'),
+              onSaved: (val) => about = val,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18.0, 20.0, 18.0, 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  MaterialButton(
+                    padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                    color: Colors.amber,
+                    textColor: Colors.deepPurple,
+                    onPressed: addUtang,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'SAVE',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                  ),
+                  MaterialButton(
+                    padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                    textColor: Colors.deepPurple,
+                    color: Colors.grey,
+                    onPressed: () => Navigator.pop(context),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'CANCEL',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

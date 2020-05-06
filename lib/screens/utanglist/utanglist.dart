@@ -31,84 +31,6 @@ class _UtangListState extends State<UtangList> {
     });
   }
 
-  // SingleChildScrollView dataTable(List<Utang> utangs) {
-  //   return SingleChildScrollView(
-  //     scrollDirection: Axis.vertical,
-  //     child: DataTable(
-  //       columns: [
-  //         DataColumn(
-  //           label: Text('NAME'),
-  //         ),
-  //         DataColumn(
-  //           label: Text('AMOUNT'),
-  //         ),
-  //       ],
-  //       rows: utangs
-  //           .map(
-  //             (utang) => DataRow(cells: [
-  //               DataCell(
-  //                 Text(utang.name),
-  //               ),
-  //               DataCell(
-  //                 Text(
-  //                   utang.amount.toString(),
-  //                 ),
-  //               ),
-  //             ]),
-  //           )
-  //           .toList(),
-  //     ),
-  //   );
-  // }
-
-  // Column dataTable(List<Utang> utangs) {
-  //   var test = utangs
-  //       .map(
-  //         (utang) => Padding(
-  //           padding: const EdgeInsets.all(5.0),
-  //           child: Container(
-  //             padding: EdgeInsets.all(10.0),
-  //             decoration: BoxDecoration(
-  //               color: Colors.red,
-  //               borderRadius: BorderRadius.all(
-  //                 Radius.circular(5.0),
-  //               ),
-  //             ),
-  //             child: Column(
-  //               mainAxisAlignment: MainAxisAlignment.start,
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: <Widget>[
-  //                 RichText(
-  //                   text: TextSpan(
-  //                       text: 'Name: ',
-  //                       style: TextStyle(color: Colors.black54, fontSize: 30.0),
-  //                       children: <TextSpan>[
-  //                         TextSpan(
-  //                           text: utang.name,
-  //                           style: TextStyle(color: Colors.amber),
-  //                         ),
-  //                       ]),
-  //                 ),
-  //                 RichText(
-  //                   text: TextSpan(
-  //                       text: 'About: ',
-  //                       style: TextStyle(color: Colors.amber, fontSize: 20.0),
-  //                       children: <TextSpan>[
-  //                         TextSpan(
-  //                           text: utang.about,
-  //                           style: TextStyle(color: Colors.deepPurple),
-  //                         ),
-  //                       ]),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ),
-  //       )
-  //       .toList();
-  //   return Column(children: test);
-  // }
-
   ListView dataTable(List<Utang> utangs) {
     return ListView.builder(
       itemCount: utangs.length,
@@ -123,6 +45,7 @@ class _UtangListState extends State<UtangList> {
             ),
           ),
           child: ListTile(
+            leading: Text('asd'),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -165,9 +88,20 @@ class _UtangListState extends State<UtangList> {
             return dataTable(snapshot.data);
           }
           if (null == snapshot.data || snapshot.data.length == 0) {
-            return Text('No Data Found');
+            return Center(
+              child: Text(
+                'No Data Found',
+                style: TextStyle(
+                  color: Colors.amber,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
           }
-          return CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );
@@ -178,6 +112,7 @@ class _UtangListState extends State<UtangList> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.home),
           title: Text('Utang List'),
         ),
         body: Container(
@@ -188,6 +123,18 @@ class _UtangListState extends State<UtangList> {
             children: <Widget>[
               ulist(),
             ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.deepPurple,
+          onPressed: () {
+            Navigator.pushNamed(context, '/add');
+          },
+          child: Icon(
+            Icons.note_add,
+            color: Colors.white,
+            size: 30.0,
           ),
         ),
         bottomNavigationBar: MyBottomNavBar(),

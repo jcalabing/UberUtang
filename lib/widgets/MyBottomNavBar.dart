@@ -13,7 +13,7 @@ class MyBottomNavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           IconButton(
-            color: Colors.amber,
+            color: Colors.white,
             icon: Icon(
               Icons.verified_user,
               size: 44.0,
@@ -23,29 +23,19 @@ class MyBottomNavBar extends StatelessWidget {
             },
           ),
           IconButton(
-            color: Colors.amber,
+            color: Colors.white,
             icon: Icon(
               Icons.home,
               size: 44.0,
             ),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/add');
+              Navigator.pushReplacementNamed(context, '/');
             },
           ),
           IconButton(
-            color: Colors.amber,
+            color: Colors.white,
             icon: Icon(
               Icons.camera,
-              size: 44.0,
-            ),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/utanglist');
-            },
-          ),
-          IconButton(
-            color: Colors.amber,
-            icon: Icon(
-              Icons.list,
               size: 44.0,
             ),
             onPressed: () {
